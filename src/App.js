@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { decrement, increment } from './redux/counter'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 
 function App() {
+  const dispatch = useDispatch()
+  const { count } = useSelector(state => state.counter)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img src="images/redux.png" alt="Redux" />
+      <p>Toolkit</p>
+      <div className="container">
+        <h1>The count is: {count}</h1>
+        <div className="buttons">
+          <button
+            className="btn-increase"
+            onClick={() => dispatch(increment())}
+          >
+            <AddIcon />
+          </button>
+          <button
+            className="btn-decrease"
+            onClick={() => dispatch(decrement())}
+          >
+            <RemoveIcon />
+          </button>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
